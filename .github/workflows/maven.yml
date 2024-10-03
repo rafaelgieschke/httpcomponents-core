@@ -48,5 +48,6 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: ${{ matrix.java }}
+    - run: trust extract --overwrite --format=java-cacerts --filter=ca-anchors --purpose=server-auth "$JAVA_HOME/lib/security/cacerts"
     - name: Build with Maven
       run: mvn -V --file pom.xml --no-transfer-progress -DtrimStackTrace=false -P-use-toolchains
